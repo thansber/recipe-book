@@ -133,6 +133,7 @@ class RecipeBook extends LitElement {
       <recipe-actions
         ?show-edit="${this.isViewingRecipe()}"
         ?show-remove="${this.isViewingRecipe()}"
+        ?show-print="${this.isViewingRecipe()}"
         @addRecipe="${this.onStartAddRecipe}"
         @editRecipe="${this.onEditRecipe}"
         @removeRecipe="${this.onRemoveRecipe}"

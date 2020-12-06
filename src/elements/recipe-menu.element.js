@@ -36,6 +36,13 @@ class RecipeMenu extends LitElement {
           color: var(--recipe-action);
         }
       `,
+      css`
+        @media print {
+          :host {
+            display: none;
+          }
+        }
+      `,
     ];
   }
 

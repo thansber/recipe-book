@@ -42,8 +42,7 @@ class RecipeStepIngredients extends LitElement {
     return this.input
       .inputValue()
       .split('\n')
-      .map(s => s.trim())
-      .filter(Boolean);
+      .map(s => s.trim());
   }
 
   render() {

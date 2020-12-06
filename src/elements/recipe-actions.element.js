@@ -51,6 +51,21 @@ class RecipeActions extends LitElement {
         :host([show-remove]) #remove-recipe {
           display: block;
         }
+
+        #print-recipe {
+          display: none;
+        }
+
+        :host([show-print]) #print-recipe {
+          display: block;
+        }
+      `,
+      css`
+        @media print {
+          :host {
+            display: none;
+          }
+        }
       `,
     ];
   }
@@ -70,12 +85,25 @@ class RecipeActions extends LitElement {
     this.dispatchEvent(new Event('editRecipe'));
   }
 
+  print() {
+    window.print();
+  }
+
   removeRecipe() {
     this.dispatchEvent(new Event('removeRecipe'));
   }
 
   render() {
     return html`
+      <recipe-button
+        id="print-recipe"
+        class="action"
+        title="Print this recipe"
+        @click="${this.print}"
+      >
+        ${icons.print}
+      </recipe-button>
+
       <recipe-button
         id="remove-recipe"
         class="action"

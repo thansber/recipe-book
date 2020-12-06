@@ -35,6 +35,7 @@ class RecipeDetails extends LitElement {
 
         li {
           margin-bottom: 0.5rem;
+          min-height: 1rem;
         }
 
         li .label {
