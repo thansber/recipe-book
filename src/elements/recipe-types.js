@@ -1,6 +1,6 @@
 export const recipeTypes = [
   { label: 'Appetizers', value: 'apps' },
-  { label: 'Entrees', value: 'meat' },
+  { label: 'Entrees', value: 'entrees' },
   { label: 'Veggies', value: 'vegs' },
 ];
 
