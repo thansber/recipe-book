@@ -38,17 +38,28 @@ class RecipeTextarea extends LitElement {
     };
   }
 
+  firstUpdated() {
+    this.input = this.shadowRoot.getElementById('input');
+  }
+
   inputValue() {
-    return this.shadowRoot.getElementById('input').value;
+    return this.input.value;
   }
 
   render() {
+    console.log(`textarea=${this.value}`);
     return html`
       <label>
         <slot></slot>
         <textarea id="input" placeholder="${this.placeholder}">${this.value}</textarea>
       </label>
     `;
+  }
+
+  updated(changed) {
+    if (changed.has('value') && !this.value) {
+      this.input.value = '';
+    }
   }
 }
 

@@ -8,7 +8,7 @@ class RecipeMenu extends LitElement {
         :host {
           border-right: 1px solid var(--recipe-light);
           display: block;
-          height: 100vh;
+          min-height: 100vh;
           padding: 1rem;
           width: 12rem;
         }
@@ -76,8 +76,14 @@ class RecipeMenu extends LitElement {
     `;
   }
 
+  sortTypes(typeA, typeB) {
+    return typeA.label.localeCompare(typeB.label, 'en', { sensitivity: 'base' });
+  }
+
   typesFromRecipes() {
-    return Array.from(new Set(this.recipes.map(recipe => recipe.type))).map(type => byValue[type]);
+    return Array.from(new Set(this.recipes.map(recipe => recipe.type)))
+      .map(type => byValue[type])
+      .sort(this.sortTypes);
   }
 }
 

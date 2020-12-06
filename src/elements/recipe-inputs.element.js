@@ -11,8 +11,6 @@ class RecipeInputs extends LitElement {
       directions: { previous: 'Ingredients' },
     };
     this.reset();
-
-    this.addEventListener('click', this.onClick);
   }
 
   static get styles() {
@@ -80,14 +78,6 @@ class RecipeInputs extends LitElement {
     const { direction, updates } = e.detail;
     this.updateModel(updates);
     this.stepIndex += direction;
-  }
-
-  onClick(e) {
-    const path = e.composedPath();
-    if (!path.map(elem => elem.localName).includes('main')) {
-      this.close();
-      return;
-    }
   }
 
   onClose() {
