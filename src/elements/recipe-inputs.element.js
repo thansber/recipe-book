@@ -127,7 +127,10 @@ class RecipeInputs extends LitElement {
 
   reset() {
     this.stepIndex = 0;
-    this.model = {};
+    this.model = {
+      directions: [],
+      ingredients: [],
+    };
   }
 
   setCurrentStep() {

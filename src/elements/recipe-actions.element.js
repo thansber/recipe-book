@@ -8,7 +8,7 @@ class RecipeActions extends LitElement {
       css`
         :host {
           bottom: 1rem;
-          position: absolute;
+          position: fixed;
           right: 1rem;
         }
 

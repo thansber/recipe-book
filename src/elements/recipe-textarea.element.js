@@ -6,6 +6,7 @@ class RecipeTextarea extends LitElement {
     this.placeholder = '';
     this.value = '';
   }
+
   static get styles() {
     return [
       css`
@@ -47,16 +48,18 @@ class RecipeTextarea extends LitElement {
   }
 
   render() {
-    console.log(`textarea=${this.value}`);
     return html`
       <label>
         <slot></slot>
-        <textarea id="input" placeholder="${this.placeholder}">${this.value}</textarea>
+        <textarea id="input" placeholder="${this.placeholder}" .value="${this.value}"></textarea>
       </label>
     `;
   }
 
   updated(changed) {
+    changed.forEach((oldValue, propName) => {
+      console.log(`${propName} changed. oldValue: ${oldValue}, newValue: ${this[propName]}`);
+    });
     if (changed.has('value') && !this.value) {
       this.input.value = '';
     }

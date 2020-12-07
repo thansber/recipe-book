@@ -45,6 +45,7 @@ class RecipeDetails extends LitElement {
 
         #ingredients,
         #directions {
+          margin-right: 3rem;
           margin-top: 2.5rem;
         }
       `,

@@ -36,7 +36,7 @@ class RecipeBook extends LitElement {
       data: { type: Object },
       inputOpen: { type: Boolean },
       recipe: { type: Object },
-      recipeForInput: { typ: Object },
+      recipeForInput: { type: Object },
       recipes: { type: Array },
       recipeType: { type: String },
     };
@@ -82,6 +82,7 @@ class RecipeBook extends LitElement {
     const { recipe } = e.detail;
     IO.saveRecipe(recipe);
     this.refresh();
+    this.setRecipe(this.currentRecipeId);
     this.setInputOpen(false);
   }
 
