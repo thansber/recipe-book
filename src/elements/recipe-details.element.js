@@ -11,12 +11,24 @@ class RecipeDetails extends LitElement {
       css`
         :host {
           display: none;
+          flex: 1;
           flex-direction: column;
-          padding: 1rem 2rem;
+          padding: 1rem 1rem 1rem 2rem;
         }
 
         :host([show]) {
           display: block;
+        }
+
+        header {
+          align-items: center;
+          display: flex;
+          justify-content: space-between;
+        }
+
+        h1 {
+          flex: 1;
+          margin: 0.5rem 0 2rem 0;
         }
 
         h2 {
@@ -54,13 +66,31 @@ class RecipeDetails extends LitElement {
 
   static get properties() {
     return {
+      confirmingRemove: { type: Boolean },
       recipe: { type: Object },
     };
   }
 
+  onCloseConfirm() {
+    this.confirmingRemove = false;
+  }
+
+  onRemoveConfirm() {
+    this.confirmingRemove = false;
+    this.dispatchEvent(new Event('removeRecipe'));
+  }
+
+  onRemoveStart(e) {
+    this.confirmingRemove = true;
+    e.stopPropagation();
+  }
+
   render() {
     return html`
-      <h1>${this.recipe.name}</h1>
+      <header>
+        <h1>${this.recipe.name}</h1>
+        <recipe-actions @removeRecipe="${this.onRemoveStart}"></recipe-actions>
+      </header>
 
       <section id="sizing">
         <ul>
@@ -91,6 +121,13 @@ class RecipeDetails extends LitElement {
           )}
         </ul>
       </section>
+
+      <recipe-remove-confirm
+        ?open="${this.confirmingRemove}"
+        .recipe="${this.recipe}"
+        @closeConfirm="${this.onCloseConfirm}"
+        @removeConfirm="${this.onRemoveConfirm}"
+      ></recipe-remove-confirm>
     `;
   }
 

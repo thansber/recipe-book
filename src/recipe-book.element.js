@@ -1,6 +1,7 @@
 import { LitElement, html, css } from 'lit-element';
 
 import './elements';
+import { icons } from './icons';
 import { IO } from './io';
 
 class RecipeBook extends LitElement {
@@ -19,12 +20,15 @@ class RecipeBook extends LitElement {
           display: flex;
         }
 
-        recipe-inputs {
-          display: none;
+        #new-recipe {
+          --recipe-button-bg-color: var(--recipe-action);
+          bottom: 1rem;
+          position: fixed;
+          right: 1rem;
         }
 
-        recipe-inputs[open] {
-          display: flex;
+        #new-recipe:hover {
+          --recipe-button-active-bg-color: var(--recipe-action-active);
         }
       `,
     ];
@@ -121,6 +125,8 @@ class RecipeBook extends LitElement {
         id="details"
         ?show="${this.isViewingRecipe()}"
         .recipe="${this.recipe || {}}"
+        @editRecipe="${this.onEditRecipe}"
+        @removeRecipe="${this.onRemoveRecipe}"
       ></recipe-details>
 
       <recipe-inputs
@@ -131,14 +137,14 @@ class RecipeBook extends LitElement {
         @closeInput="${this.onCloseInput}"
       ></recipe-inputs>
 
-      <recipe-actions
-        ?show-edit="${this.isViewingRecipe()}"
-        ?show-remove="${this.isViewingRecipe()}"
-        ?show-print="${this.isViewingRecipe()}"
-        @addRecipe="${this.onStartAddRecipe}"
-        @editRecipe="${this.onEditRecipe}"
-        @removeRecipe="${this.onRemoveRecipe}"
-      ></recipe-actions>
+      <recipe-button
+        id="new-recipe"
+        class="large"
+        title="Add a new recipe"
+        @click="${this.onStartAddRecipe}"
+      >
+        ${icons.plus}
+      </recipe-button>
     `;
   }
 

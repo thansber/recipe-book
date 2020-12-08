@@ -5,6 +5,7 @@ import './recipe-input.element';
 import './recipe-inputs.element';
 import './recipe-list.element';
 import './recipe-menu.element';
+import './recipe-remove-confirm.element';
 import './recipe-step.element';
 import './recipe-textarea.element';
 import './recipe-type-selector.element';

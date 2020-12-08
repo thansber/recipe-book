@@ -20,12 +20,18 @@ class RecipeInputs extends LitElement {
           align-items: center;
           background-color: black;
           bottom: 0;
+          display: none;
           flex: 1;
           justify-content: center;
           left: 0;
           position: fixed;
           right: 0;
           top: 0;
+          z-index: 1;
+        }
+
+        :host([open]) {
+          display: flex;
         }
 
         header {

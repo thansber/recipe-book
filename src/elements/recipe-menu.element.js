@@ -9,8 +9,8 @@ class RecipeMenu extends LitElement {
           border-right: 1px solid var(--recipe-light);
           display: block;
           min-height: 100vh;
+          min-width: 12rem;
           padding: 1rem;
-          width: 12rem;
         }
 
         h3 {
@@ -68,7 +68,7 @@ class RecipeMenu extends LitElement {
         ${this.typesFromRecipes().map(
           type =>
             html`
-              <li data-type="${type.value}">${type.label}</li>
+              <li data-type="${type.value}">${type.label} (${type.count})</li>
             `,
         )}
         <li data-type="" class="all">All Recipes</li>
@@ -81,8 +81,14 @@ class RecipeMenu extends LitElement {
   }
 
   typesFromRecipes() {
-    return Array.from(new Set(this.recipes.map(recipe => recipe.type)))
-      .map(type => byValue[type])
+    const countByType = this.recipes.reduce((count, recipe) => {
+      return {
+        ...count,
+        [recipe.type]: count[recipe.type] ? ++count[recipe.type] : 1,
+      };
+    }, {});
+    return Object.keys(countByType)
+      .map(type => ({ ...byValue[type], count: countByType[type] }))
       .sort(this.sortTypes);
   }
 }

@@ -18,7 +18,7 @@ class RecipeButton extends LitElement {
           display: flex;
           font-size: 1.25rem;
           justify-content: center;
-          padding: 0.25rem 0.5rem;
+          padding: var(--recipe-button-padding, 0.25rem 0.5rem);
         }
 
         button:hover {
@@ -35,17 +35,22 @@ class RecipeButton extends LitElement {
         }
 
         :host(.add) button {
-          background-color: var(--recipe-add);
+          background-color: var(--recipe-create);
         }
 
         :host(.add) button:hover {
-          background-color: var(--recipe-add-active);
+          background-color: var(--recipe-create-active);
         }
 
-        :host(.action) button {
+        :host(.large) button {
           border-radius: 99rem;
           height: 3.5rem;
           width: 3.5rem;
+        }
+
+        :host(.action) button {
+          height: 2.5rem;
+          width: 2.5rem;
         }
       `,
     ];
