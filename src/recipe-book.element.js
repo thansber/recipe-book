@@ -31,6 +31,13 @@ class RecipeBook extends LitElement {
           --recipe-button-active-bg-color: var(--recipe-action-active);
         }
       `,
+      css`
+        @media print {
+          #new-recipe {
+            display: none;
+          }
+        }
+      `,
     ];
   }
 
