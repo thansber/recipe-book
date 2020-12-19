@@ -57,9 +57,6 @@ class RecipeTextarea extends LitElement {
   }
 
   updated(changed) {
-    changed.forEach((oldValue, propName) => {
-      console.log(`${propName} changed. oldValue: ${oldValue}, newValue: ${this[propName]}`);
-    });
     if (changed.has('value') && !this.value) {
       this.input.value = '';
     }

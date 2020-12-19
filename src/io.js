@@ -49,7 +49,6 @@ const saveRecipe = recipe => {
 const updateRecipe = recipe => {
   const stored = read().recipes;
   const recipes = stored.map(s => (s.id !== recipe.id ? s : { ...s, ...recipe }));
-  console.log(recipes);
   write({ recipes });
 };
 
